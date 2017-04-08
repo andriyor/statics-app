@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+    {{ super() }}
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="ck/static/chartkick.js"></script>
+{% endblock %}
+
+{% block page_content %}        
+    {{ wtf.quick_form(list_form) }}
+    
+    {{ wtf.quick_form(radio_form) }}
+
+    <h1>Line chart:</h1>
+    {% line_chart data %}
+    <h1>Pie chart:</h1>
+    {% pie_chart data with id='chart-1' height='400px' %}
+    <h1>Column chart:</h1>
+    {% column_chart data with min=400 max=1000 %}
+    <h1>Bar chart:</h1>
+    {% bar_chart data %}
+    <h1>Area chart:</h1>
+    {% area_chart data %}
+{% endblock %}
